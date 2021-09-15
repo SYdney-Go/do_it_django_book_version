@@ -58,10 +58,9 @@ class TestView(TestCase):
         self.assertEqual(post_001.get_absolute_url(), '/blog/1')
         
         # 2 첫번째 포스트의 상세 페이지 테스트
-        # 2,1 첫 번째 포스트의 url로 접근하면 정상적으로 작동한다.
-        response = self.client.get(post_001.get_absolute_url())
-        # self.assertRedirects(response, '/home', status_code=301, target_status_code=301)
-        # self.assertEqual(response.status_code, 200)
+        # 2.1 첫 번째 포스트의 url로 접근하면 정상적으로 작동한다.
+        response = self.client.get(post_001.get_absolute_url(), follow=True)
+        self.assertEqual(response.status_code, 200)
         soup = BeautifulSoup(response.content, 'html.parser')       
         # 2.2 포스트 목록 페이지와 똑같은 네비게이션 바가 있다.
         navbar = soup.nav
