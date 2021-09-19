@@ -45,7 +45,6 @@ class TestView(TestCase):
         response = self.client.get(self.tag_hello.get_absolute_url())
         self.assertEqual(response.status_code, 200)
         soup = BeautifulSoup(response.content, 'html.parser')
-
         self.navbar_test(soup)
         self.category_card_test(soup)
 
