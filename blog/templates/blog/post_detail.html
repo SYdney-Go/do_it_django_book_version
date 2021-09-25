@@ -42,9 +42,9 @@
             <img class="img-fluid rounded" src="https://picsum.photos/seed/{{ post.id }}/700/500" alt="random_image">
             {% endif %}
             <hr>
-            <!-- Post content-->
+            <!-- Post content -->
             <section class="mb-5">
-                <p class="fs-5 mb-4" >{{ post.content }}</p>
+                <p class="fs-5 mb-4" >{{ post.get_content_markdown | safe }}</p>
                 {% if post.tags.exists %}
                     <i class="fas fa-tags"></i>
                     {% for tag in post.tags.all %}
