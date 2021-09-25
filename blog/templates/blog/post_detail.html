@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block head_title %}
     {{ post.title }} - Blog
@@ -82,14 +83,21 @@
                 Leave a Comment:
             </h5>
             <div class="card-body">
-                <form>
+                {% if user.is_authenticated %}
+                <form id="comment-form" method="POST" action="{{ post.get_absolute_url }} new_comment/">
+                    {% csrf_token %}
                     <div class="form-group">
-                        <textarea class="form-control" rows="3"></textarea>
+                        {{ comment_form | crispy }}
                     </div>
                     <button type="submit" class="btn btn-primary">
                         Submit
                     </button>
                 </form>
+                {% else %}
+                    <a role="button" class="btn btn-outline-dark btn-black btn-sm" href="#" data-toggle="modal" data-target="#loginModal">
+                        Log in and leave a comment
+                    </a>
+                {% endif %}
             </div>
         </div>
         {% if post.comment_set.exists %}
@@ -98,7 +106,8 @@
                 <div class="d-flex" id="comment-{{ comment.pk }}">
                     <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
                     <div class="media-body">
-                        <h5 class="mt-0">{{ comment.author.username }} &nbsp;&nbsp;
+                        <h5 class="mt-0">
+                            {{ comment.author.username }} &nbsp;&nbsp;
                             <small class="text-muted">
                                 {{ comment.created_at }}
                             </small>
@@ -112,4 +121,5 @@
         {% endif %}
     </div>
     <hr/>
+
 {% endblock %}
