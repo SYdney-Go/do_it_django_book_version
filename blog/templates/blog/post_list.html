@@ -13,7 +13,7 @@
         
         {% if user.is_authenticated %}
             {% if user.is_superuser or user.is_staff %}
-                <a class="btn btn-info btn-sm float-right" href="/blog/create_post/" role="button">
+                <a class="btn btn-info btn-sm float-end" href="/blog/create_post/" role="button">
                     <i class="fas fa-pen">&nbsp;&nbsp;New Post</i>
                 </a>
             {% endif %}
@@ -32,9 +32,9 @@
             {% endif %}
             <div class="card-body">
                 {% if p.category %}
-                    <span class="badge bg-secondary float-right">{{ p.category }}</span>
+                    <span class="badge bg-secondary float-end">{{ p.category }}</span>
                 {% else %}
-                    <span class="badge bg-secondary float-right">미분류</span>
+                    <span class="badge bg-secondary float-end">미분류</span>
                 {% endif %}
                 <h2 class="card-title h4">{{ p.title }}</h2>
                 {% if p.hook_text %}
