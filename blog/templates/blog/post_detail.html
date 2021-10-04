@@ -94,7 +94,7 @@
                     </button>
                 </form>
                 {% else %}
-                    <a role="button" class="btn btn-outline-dark btn-black btn-sm" href="#" data-toggle="modal" data-target="#loginModal">
+                    <a role="button" class="btn btn-outline-dark btn-black btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
                         Log in and leave a comment
                     </a>
                 {% endif %}
@@ -111,15 +111,15 @@
                                 <a role="button"
                                     href="/blog/update_comment/{{ comment.pk }}/"
                                     id="comment-{{ comment.pk }}-update-btn"
-                                    class"btn btn-sm btn-info">
+                                    class = "btn btn-sm btn-info">
                                     edit
                                 </a>
                                 <a role="button"
                                     href="#"
                                     id="comment-{{ comment.pk }}-delete-modal-btn"
                                     class="btn btn-sm btn-danger"
-                                    data-toggle="modal"
-                                    data-target="#deleteCommentModal-{{ comment.pk }}">
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteCommentModal-{{ comment.pk }}">
                                     delete
                                 </a>
                             </div>
